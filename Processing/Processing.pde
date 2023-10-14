@@ -1,44 +1,30 @@
+GameController control;
 
-Car carro;
 
 void setup() {
-  carro = new Car();
+  size(900,900);
   
-  size(500,500);
+  loadImages();
+  generateCheckCollisionPoints(50);
+  
+  control = new GameController();
   
   rectMode(CENTER);
+  imageMode(CENTER);
 }
 
 void draw() {
-  background(0);
-  carro.update();
-  carro.draw();
+  control.draw();
 }
 
 void keyPressed() {
-  if (key == CODED) {
-    if (keyCode == UP) {
-      carro.pisaAcelerador();
-    } else if (keyCode == DOWN) {
-      carro.pisaFreio();
-    }  else if (keyCode == LEFT) {
-      carro.clicaViraEsquerda();
-    }  else if (keyCode == RIGHT) {
-      carro.clicaViraDireita();
-    } 
-  }
+  control.keyPressed(key);
 }
 
 void keyReleased() {
-  if (key == CODED) {
-    if (keyCode == UP) {
-      carro.soltaAcelerador();
-    } else if (keyCode == DOWN) {
-      carro.soltaFreio();
-    }  else if (keyCode == LEFT) {
-      carro.soltaViraEsquerda();
-    }  else if (keyCode == RIGHT) {
-      carro.soltaViraDireita();
-    } 
-  }
+  control.keyReleased(key);
+}
+
+void mouseClicked() {
+  control.mouseClicked(mouseX, mouseY);
 }
